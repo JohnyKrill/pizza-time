@@ -3389,7 +3389,7 @@
           { balloonContent: 'Current address of the company' },
           {
             iconLayout: 'default#image',
-            iconImageHref: '../img/iconPizzaSlice.svg',
+            iconImageHref: 'img/iconPizzaSlice.svg',
             iconImageSize: [40, 63],
             iconImageOffset: [-20, -40],
           }
