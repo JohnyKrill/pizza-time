@@ -1,3 +1,4 @@
+/*! For license information please see app.min.js.LICENSE.txt */
 (() => {
   var t = {
       732: function (t) {
@@ -85,19 +86,19 @@
             d = 'sizes',
             h = 'poster',
             m = 'llOriginalAttrs',
-            f = 'data',
-            p = 'loading',
+            p = 'data',
+            f = 'loading',
             g = 'loaded',
             y = 'applied',
             v = 'error',
             _ = 'native',
-            S = 'data-',
-            b = 'll-status',
+            b = 'data-',
+            S = 'll-status',
             E = function (t, e) {
-              return t.getAttribute(S + e);
+              return t.getAttribute(b + e);
             },
             I = function (t) {
-              return E(t, b);
+              return E(t, S);
             },
             C = function (t, e) {
               return (function (t, e, i) {
@@ -108,14 +109,14 @@
             L = function (t) {
               return C(t, null);
             },
-            w = function (t) {
+            x = function (t) {
               return null === I(t);
             },
-            x = function (t) {
+            w = function (t) {
               return I(t) === _;
             },
-            z = [p, g, y, v],
-            A = function (t, e, i, s) {
+            A = [f, g, y, v],
+            z = function (t, e, i, s) {
               t &&
                 (void 0 === s ? (void 0 === i ? t(e) : t(e, i)) : t(e, i, s));
             },
@@ -132,37 +133,37 @@
                     .replace(/^\s+/, '')
                     .replace(/\s+$/, ''));
             },
-            W = function (t) {
+            k = function (t) {
               return t.llTempImage;
             },
-            k = function (t, e) {
+            q = function (t, e) {
               if (e) {
                 var i = e._observer;
                 i && i.unobserve(t);
               }
             },
-            q = function (t, e) {
+            j = function (t, e) {
               t && (t.loadingCount += e);
             },
-            M = function (t, e) {
+            P = function (t, e) {
               t && (t.toLoadCount = e);
             },
-            $ = function (t) {
+            W = function (t) {
               for (var e, i = [], s = 0; (e = t.children[s]); s += 1)
                 'SOURCE' === e.tagName && i.push(e);
               return i;
             },
-            P = function (t, e) {
+            M = function (t, e) {
               var i = t.parentNode;
-              i && 'PICTURE' === i.tagName && $(i).forEach(e);
+              i && 'PICTURE' === i.tagName && W(i).forEach(e);
             },
-            R = function (t, e) {
-              $(t).forEach(e);
+            D = function (t, e) {
+              W(t).forEach(e);
             },
-            j = [c],
-            D = [c, h],
-            B = [c, u, d],
-            H = [f],
+            $ = [c],
+            B = [c, h],
+            R = [c, u, d],
+            H = [p],
             F = function (t) {
               return !!t[m];
             },
@@ -172,7 +173,7 @@
             Y = function (t) {
               return delete t[m];
             },
-            U = function (t, e) {
+            Q = function (t, e) {
               if (!F(t)) {
                 var i = {};
                 e.forEach(function (e) {
@@ -191,48 +192,48 @@
                 });
               }
             },
-            Q = function (t, e, i) {
+            U = function (t, e, i) {
               O(t, e.class_applied),
                 C(t, y),
                 i &&
-                  (e.unobserve_completed && k(t, e),
-                  A(e.callback_applied, t, i));
+                  (e.unobserve_completed && q(t, e),
+                  z(e.callback_applied, t, i));
             },
             V = function (t, e, i) {
               O(t, e.class_loading),
-                C(t, p),
-                i && (q(i, 1), A(e.callback_loading, t, i));
+                C(t, f),
+                i && (j(i, 1), z(e.callback_loading, t, i));
             },
-            Z = function (t, e, i) {
+            J = function (t, e, i) {
               i && t.setAttribute(e, i);
             },
-            J = function (t, e) {
-              Z(t, d, E(t, e.data_sizes)),
-                Z(t, u, E(t, e.data_srcset)),
-                Z(t, c, E(t, e.data_src));
+            Z = function (t, e) {
+              J(t, d, E(t, e.data_sizes)),
+                J(t, u, E(t, e.data_srcset)),
+                J(t, c, E(t, e.data_src));
             },
             X = {
               IMG: function (t, e) {
-                P(t, function (t) {
-                  U(t, B), J(t, e);
+                M(t, function (t) {
+                  Q(t, R), Z(t, e);
                 }),
-                  U(t, B),
-                  J(t, e);
+                  Q(t, R),
+                  Z(t, e);
               },
               IFRAME: function (t, e) {
-                U(t, j), Z(t, c, E(t, e.data_src));
+                Q(t, $), J(t, c, E(t, e.data_src));
               },
               VIDEO: function (t, e) {
-                R(t, function (t) {
-                  U(t, j), Z(t, c, E(t, e.data_src));
+                D(t, function (t) {
+                  Q(t, $), J(t, c, E(t, e.data_src));
                 }),
-                  U(t, D),
-                  Z(t, h, E(t, e.data_poster)),
-                  Z(t, c, E(t, e.data_src)),
+                  Q(t, B),
+                  J(t, h, E(t, e.data_poster)),
+                  J(t, c, E(t, e.data_src)),
                   t.load();
               },
               OBJECT: function (t, e) {
-                U(t, H), Z(t, f, E(t, e.data_src));
+                Q(t, H), J(t, p, E(t, e.data_src));
               },
             },
             K = ['IMG', 'IFRAME', 'VIDEO', 'OBJECT'],
@@ -244,7 +245,7 @@
                 (function (t) {
                   return t.toLoadCount > 0;
                 })(e) ||
-                A(t.callback_finish, e);
+                z(t.callback_finish, e);
             },
             et = function (t, e, i) {
               t.addEventListener(e, i), (t.llEvLisnrs[e] = i);
@@ -269,15 +270,15 @@
               !(function (t) {
                 delete t.llTempImage;
               })(t),
-                q(i, -1),
+                j(i, -1),
                 (function (t) {
                   t && (t.toLoadCount -= 1);
                 })(i),
                 T(t, e.class_loading),
-                e.unobserve_completed && k(t, i);
+                e.unobserve_completed && q(t, i);
             },
             rt = function (t, e, i) {
-              var s = W(t) || t;
+              var s = k(t) || t;
               st(s) ||
                 (function (t, e, i) {
                   st(t) || (t.llEvLisnrs = {});
@@ -287,23 +288,23 @@
                   s,
                   function (n) {
                     !(function (t, e, i, s) {
-                      var n = x(e);
+                      var n = w(e);
                       ot(e, i, s),
                         O(e, i.class_loaded),
                         C(e, g),
-                        A(i.callback_loaded, e, s),
+                        z(i.callback_loaded, e, s),
                         n || tt(i, s);
                     })(0, t, e, i),
                       nt(s);
                   },
                   function (n) {
                     !(function (t, e, i, s) {
-                      var n = x(e);
+                      var n = w(e);
                       ot(e, i, s),
                         O(e, i.class_error),
                         C(e, v),
-                        A(i.callback_error, e, s),
-                        i.restore_on_error && G(e, B),
+                        z(i.callback_error, e, s),
+                        i.restore_on_error && G(e, R),
                         n || tt(i, s);
                     })(0, t, e, i),
                       nt(s);
@@ -329,14 +330,14 @@
                           r = o && n ? n : s;
                         r &&
                           ((t.style.backgroundImage = 'url("'.concat(r, '")')),
-                          W(t).setAttribute(c, r),
+                          k(t).setAttribute(c, r),
                           V(t, e, i));
                       })(t, e, i),
                       (function (t, e, i) {
                         var s = E(t, e.data_bg_multi),
                           n = E(t, e.data_bg_multi_hidpi),
                           r = o && n ? n : s;
-                        r && ((t.style.backgroundImage = r), Q(t, e, i));
+                        r && ((t.style.backgroundImage = r), U(t, e, i));
                       })(t, e, i),
                       (function (t, e, i) {
                         var s = E(t, e.data_bg_set);
@@ -351,7 +352,7 @@
                                 return '-webkit-image-set('.concat(t, ')');
                               })),
                               (t.style.backgroundImage = o.join())),
-                            Q(t, e, i);
+                            U(t, e, i);
                         }
                       })(t, e, i);
                   })(t, e, i)
@@ -367,21 +368,21 @@
               t.removeAttribute(c), t.removeAttribute(u), t.removeAttribute(d);
             },
             ct = function (t) {
-              P(t, function (t) {
-                G(t, B);
+              M(t, function (t) {
+                G(t, R);
               }),
-                G(t, B);
+                G(t, R);
             },
             ut = {
               IMG: ct,
               IFRAME: function (t) {
-                G(t, j);
+                G(t, $);
               },
               VIDEO: function (t) {
-                R(t, function (t) {
-                  G(t, j);
+                D(t, function (t) {
+                  G(t, $);
                 }),
-                  G(t, D),
+                  G(t, B),
                   t.load();
               },
               OBJECT: function (t) {
@@ -401,8 +402,8 @@
                     })(t);
               })(t),
                 (function (t, e) {
-                  w(t) ||
-                    x(t) ||
+                  x(t) ||
+                    w(t) ||
                     (T(t, e.class_entered),
                     T(t, e.class_exited),
                     T(t, e.class_applied),
@@ -417,51 +418,51 @@
             mt = function (t) {
               return t.use_native && 'loading' in HTMLImageElement.prototype;
             },
-            ft = function (t, e, i) {
+            pt = function (t, e, i) {
               t.forEach(function (t) {
                 return (function (t) {
                   return t.isIntersecting || t.intersectionRatio > 0;
                 })(t)
                   ? (function (t, e, i, s) {
                       var n = (function (t) {
-                        return z.indexOf(I(t)) >= 0;
+                        return A.indexOf(I(t)) >= 0;
                       })(t);
                       C(t, 'entered'),
                         O(t, i.class_entered),
                         T(t, i.class_exited),
                         (function (t, e, i) {
-                          e.unobserve_entered && k(t, i);
+                          e.unobserve_entered && q(t, i);
                         })(t, i, s),
-                        A(i.callback_enter, t, e, s),
+                        z(i.callback_enter, t, e, s),
                         n || at(t, i, s);
                     })(t.target, t, e, i)
                   : (function (t, e, i, s) {
-                      w(t) ||
+                      x(t) ||
                         (O(t, i.class_exited),
                         (function (t, e, i, s) {
                           i.cancel_on_exit &&
                             (function (t) {
-                              return I(t) === p;
+                              return I(t) === f;
                             })(t) &&
                             'IMG' === t.tagName &&
                             (nt(t),
                             (function (t) {
-                              P(t, function (t) {
+                              M(t, function (t) {
                                 lt(t);
                               }),
                                 lt(t);
                             })(t),
                             ct(t),
                             T(t, i.class_loading),
-                            q(s, -1),
+                            j(s, -1),
                             L(t),
-                            A(i.callback_cancel, t, e, s));
+                            z(i.callback_cancel, t, e, s));
                         })(t, e, i, s),
-                        A(i.callback_exit, t, e, s));
+                        z(i.callback_exit, t, e, s));
                     })(t.target, t, e, i);
               });
             },
-            pt = function (t) {
+            ft = function (t) {
               return Array.prototype.slice.call(t);
             },
             gt = function (t) {
@@ -474,7 +475,7 @@
             },
             vt = function (t, e) {
               return (function (t) {
-                return pt(t).filter(w);
+                return ft(t).filter(x);
               })(t || gt(e));
             },
             _t = function (t, i) {
@@ -486,7 +487,7 @@
                     !mt(t) &&
                     (e._observer = new IntersectionObserver(
                       function (i) {
-                        ft(i, t, e);
+                        pt(i, t, e);
                       },
                       (function (t) {
                         return {
@@ -501,7 +502,7 @@
                     ((i._onlineHandler = function () {
                       !(function (t, e) {
                         var i;
-                        ((i = gt(t)), pt(i).filter(yt)).forEach(function (e) {
+                        ((i = gt(t)), ft(i).filter(yt)).forEach(function (e) {
                           T(e, t.class_error), L(e);
                         }),
                           e.update();
@@ -518,7 +519,7 @@
                   n,
                   o = this._settings,
                   r = vt(t, o);
-                M(this, r.length),
+                P(this, r.length),
                   !i && s
                     ? mt(o)
                       ? (function (t, e, i) {
@@ -534,7 +535,7 @@
                                   C(t, _);
                               })(t, e, i);
                           }),
-                            M(i, 0);
+                            P(i, 0);
                         })(r, o, this)
                       : ((n = r),
                         (function (t) {
@@ -564,7 +565,7 @@
                 var e = this,
                   i = this._settings;
                 vt(t, i).forEach(function (t) {
-                  k(t, e), at(t, i, e);
+                  q(t, e), at(t, i, e);
                 });
               },
               restoreAll: function () {
@@ -605,8 +606,234 @@
     function s(t) {
       this.type = t;
     }
-    (t = window),
-      (e = function (t, e) {
+    (t = 'undefined' != typeof window ? window : void 0),
+      (e = function () {
+        function t() {}
+        let e = t.prototype;
+        return (
+          (e.on = function (t, e) {
+            if (!t || !e) return this;
+            let i = (this._events = this._events || {}),
+              s = (i[t] = i[t] || []);
+            return s.includes(e) || s.push(e), this;
+          }),
+          (e.once = function (t, e) {
+            if (!t || !e) return this;
+            this.on(t, e);
+            let i = (this._onceEvents = this._onceEvents || {});
+            return ((i[t] = i[t] || {})[e] = !0), this;
+          }),
+          (e.off = function (t, e) {
+            let i = this._events && this._events[t];
+            if (!i || !i.length) return this;
+            let s = i.indexOf(e);
+            return -1 != s && i.splice(s, 1), this;
+          }),
+          (e.emitEvent = function (t, e) {
+            let i = this._events && this._events[t];
+            if (!i || !i.length) return this;
+            (i = i.slice(0)), (e = e || []);
+            let s = this._onceEvents && this._onceEvents[t];
+            for (let n of i)
+              s && s[n] && (this.off(t, n), delete s[n]), n.apply(this, e);
+            return this;
+          }),
+          (e.allOff = function () {
+            return delete this._events, delete this._onceEvents, this;
+          }),
+          t
+        );
+      }),
+      'object' == typeof module && module.exports
+        ? (module.exports = e())
+        : (t.EvEmitter = e()),
+      (function (t, e) {
+        'object' == typeof module && module.exports
+          ? (module.exports = e(t, require('ev-emitter')))
+          : (t.imagesLoaded = e(t, t.EvEmitter));
+      })('undefined' != typeof window ? window : void 0, function (t, e) {
+        let i = t.jQuery,
+          s = t.console;
+        function n(t, e, o) {
+          if (!(this instanceof n)) return new n(t, e, o);
+          let r = t;
+          var a;
+          'string' == typeof t && (r = document.querySelectorAll(t)),
+            r
+              ? ((this.elements =
+                  ((a = r),
+                  Array.isArray(a)
+                    ? a
+                    : 'object' == typeof a && 'number' == typeof a.length
+                    ? [...a]
+                    : [a])),
+                (this.options = {}),
+                'function' == typeof e
+                  ? (o = e)
+                  : Object.assign(this.options, e),
+                o && this.on('always', o),
+                this.getImages(),
+                i && (this.jqDeferred = new i.Deferred()),
+                setTimeout(this.check.bind(this)))
+              : s.error(`Bad element for imagesLoaded ${r || t}`);
+        }
+        (n.prototype = Object.create(e.prototype)),
+          (n.prototype.getImages = function () {
+            (this.images = []),
+              this.elements.forEach(this.addElementImages, this);
+          });
+        const o = [1, 9, 11];
+        n.prototype.addElementImages = function (t) {
+          'IMG' === t.nodeName && this.addImage(t),
+            !0 === this.options.background &&
+              this.addElementBackgroundImages(t);
+          let { nodeType: e } = t;
+          if (!e || !o.includes(e)) return;
+          let i = t.querySelectorAll('img');
+          for (let t of i) this.addImage(t);
+          if ('string' == typeof this.options.background) {
+            let e = t.querySelectorAll(this.options.background);
+            for (let t of e) this.addElementBackgroundImages(t);
+          }
+        };
+        const r = /url\((['"])?(.*?)\1\)/gi;
+        function a(t) {
+          this.img = t;
+        }
+        function l(t, e) {
+          (this.url = t), (this.element = e), (this.img = new Image());
+        }
+        return (
+          (n.prototype.addElementBackgroundImages = function (t) {
+            let e = getComputedStyle(t);
+            if (!e) return;
+            let i = r.exec(e.backgroundImage);
+            for (; null !== i; ) {
+              let s = i && i[2];
+              s && this.addBackground(s, t), (i = r.exec(e.backgroundImage));
+            }
+          }),
+          (n.prototype.addImage = function (t) {
+            let e = new a(t);
+            this.images.push(e);
+          }),
+          (n.prototype.addBackground = function (t, e) {
+            let i = new l(t, e);
+            this.images.push(i);
+          }),
+          (n.prototype.check = function () {
+            if (
+              ((this.progressedCount = 0),
+              (this.hasAnyBroken = !1),
+              !this.images.length)
+            )
+              return void this.complete();
+            let t = (t, e, i) => {
+              setTimeout(() => {
+                this.progress(t, e, i);
+              });
+            };
+            this.images.forEach(function (e) {
+              e.once('progress', t), e.check();
+            });
+          }),
+          (n.prototype.progress = function (t, e, i) {
+            this.progressedCount++,
+              (this.hasAnyBroken = this.hasAnyBroken || !t.isLoaded),
+              this.emitEvent('progress', [this, t, e]),
+              this.jqDeferred &&
+                this.jqDeferred.notify &&
+                this.jqDeferred.notify(this, t),
+              this.progressedCount === this.images.length && this.complete(),
+              this.options.debug && s && s.log(`progress: ${i}`, t, e);
+          }),
+          (n.prototype.complete = function () {
+            let t = this.hasAnyBroken ? 'fail' : 'done';
+            if (
+              ((this.isComplete = !0),
+              this.emitEvent(t, [this]),
+              this.emitEvent('always', [this]),
+              this.jqDeferred)
+            ) {
+              let t = this.hasAnyBroken ? 'reject' : 'resolve';
+              this.jqDeferred[t](this);
+            }
+          }),
+          (a.prototype = Object.create(e.prototype)),
+          (a.prototype.check = function () {
+            this.getIsImageComplete()
+              ? this.confirm(0 !== this.img.naturalWidth, 'naturalWidth')
+              : ((this.proxyImage = new Image()),
+                this.img.crossOrigin &&
+                  (this.proxyImage.crossOrigin = this.img.crossOrigin),
+                this.proxyImage.addEventListener('load', this),
+                this.proxyImage.addEventListener('error', this),
+                this.img.addEventListener('load', this),
+                this.img.addEventListener('error', this),
+                (this.proxyImage.src = this.img.currentSrc || this.img.src));
+          }),
+          (a.prototype.getIsImageComplete = function () {
+            return this.img.complete && this.img.naturalWidth;
+          }),
+          (a.prototype.confirm = function (t, e) {
+            this.isLoaded = t;
+            let { parentNode: i } = this.img,
+              s = 'PICTURE' === i.nodeName ? i : this.img;
+            this.emitEvent('progress', [this, s, e]);
+          }),
+          (a.prototype.handleEvent = function (t) {
+            let e = 'on' + t.type;
+            this[e] && this[e](t);
+          }),
+          (a.prototype.onload = function () {
+            this.confirm(!0, 'onload'), this.unbindEvents();
+          }),
+          (a.prototype.onerror = function () {
+            this.confirm(!1, 'onerror'), this.unbindEvents();
+          }),
+          (a.prototype.unbindEvents = function () {
+            this.proxyImage.removeEventListener('load', this),
+              this.proxyImage.removeEventListener('error', this),
+              this.img.removeEventListener('load', this),
+              this.img.removeEventListener('error', this);
+          }),
+          (l.prototype = Object.create(a.prototype)),
+          (l.prototype.check = function () {
+            this.img.addEventListener('load', this),
+              this.img.addEventListener('error', this),
+              (this.img.src = this.url),
+              this.getIsImageComplete() &&
+                (this.confirm(0 !== this.img.naturalWidth, 'naturalWidth'),
+                this.unbindEvents());
+          }),
+          (l.prototype.unbindEvents = function () {
+            this.img.removeEventListener('load', this),
+              this.img.removeEventListener('error', this);
+          }),
+          (l.prototype.confirm = function (t, e) {
+            (this.isLoaded = t),
+              this.emitEvent('progress', [this, this.element, e]);
+          }),
+          (n.makeJQueryPlugin = function (e) {
+            (e = e || t.jQuery) &&
+              ((i = e),
+              (i.fn.imagesLoaded = function (t, e) {
+                return new n(this, t, e).jqDeferred.promise(i(this));
+              }));
+          }),
+          n.makeJQueryPlugin(),
+          n
+        );
+      }),
+      (function (t, e) {
+        'function' == typeof define && define.amd
+          ? define('jquery-bridget/jquery-bridget', ['jquery'], function (i) {
+              return e(t, i);
+            })
+          : 'object' == typeof module && module.exports
+          ? (module.exports = e(t, require('jquery')))
+          : (t.jQueryBridget = e(t, t.jQuery));
+      })(window, function (t, e) {
         function i(i, o, a) {
           (a = a || e || t.jQuery) &&
             (o.prototype.option ||
@@ -658,13 +885,6 @@
                 };
         return s(e || t.jQuery), i;
       }),
-      'function' == typeof define && define.amd
-        ? define('jquery-bridget/jquery-bridget', ['jquery'], function (i) {
-            return e(t, i);
-          })
-        : 'object' == typeof module && module.exports
-        ? (module.exports = e(t, require('jquery')))
-        : (t.jQueryBridget = e(t, t.jQuery)),
       (function (t, e) {
         'function' == typeof define && define.amd
           ? define('ev-emitter/ev-emitter', e)
@@ -794,20 +1014,20 @@
                 m = parseFloat(h);
               l[d] = isNaN(m) ? 0 : m;
             }
-            var f = l.paddingLeft + l.paddingRight,
-              p = l.paddingTop + l.paddingBottom,
+            var p = l.paddingLeft + l.paddingRight,
+              f = l.paddingTop + l.paddingBottom,
               g = l.marginLeft + l.marginRight,
               y = l.marginTop + l.marginBottom,
               v = l.borderLeftWidth + l.borderRightWidth,
               _ = l.borderTopWidth + l.borderBottomWidth,
-              S = c && n,
-              b = t(o.width);
-            !1 !== b && (l.width = b + (S ? 0 : f + v));
+              b = c && n,
+              S = t(o.width);
+            !1 !== S && (l.width = S + (b ? 0 : p + v));
             var E = t(o.height);
             return (
-              !1 !== E && (l.height = E + (S ? 0 : p + _)),
-              (l.innerWidth = l.width - (f + v)),
-              (l.innerHeight = l.height - (p + _)),
+              !1 !== E && (l.height = E + (b ? 0 : f + _)),
+              (l.innerWidth = l.width - (p + v)),
+              (l.innerHeight = l.height - (f + _)),
               (l.outerWidth = l.width + g),
               (l.outerHeight = l.height + y),
               l
@@ -2625,17 +2845,7 @@
             }, t);
         }
       };
-    function h(t) {
-      setTimeout(() => {
-        window.FLS && console.log(t);
-      }, 0);
-    }
-    function m(t) {
-      return t.filter(function (t, e, i) {
-        return i.indexOf(t) === e;
-      });
-    }
-    class f {
+    class h {
       constructor(t, e = null) {
         if (
           ((this.config = Object.assign({ init: !0, logging: !0 }, t)),
@@ -3030,7 +3240,7 @@
       }
       setSelectChange(t) {
         if (
-          (t.hasAttribute('data-validate') && g.validateInput(t),
+          (t.hasAttribute('data-validate') && p.validateInput(t),
           t.hasAttribute('data-submit') && t.value)
         ) {
           let e = document.createElement('button');
@@ -3082,11 +3292,16 @@
         );
       }
       setLogging(t) {
-        this.config.logging && h(`[select]: ${t}`);
+        this.config.logging &&
+          (function (t) {
+            setTimeout(() => {
+              window.FLS && console.log(t);
+            }, 0);
+          })(`[select]: ${t}`);
       }
     }
-    const p = { inputMaskModule: null, selectModule: null };
-    let g = {
+    const m = { inputMaskModule: null, selectModule: null };
+    let p = {
       getErrors(t) {
         let e = 0,
           i = t.querySelectorAll('*[data-required]');
@@ -3139,7 +3354,7 @@
               const i = e[t];
               i.parentElement.classList.remove('_form-focus'),
                 i.classList.remove('_form-focus'),
-                g.removeError(i),
+                p.removeError(i),
                 (i.value = i.dataset.placeholder);
             }
             let i = t.querySelectorAll('.checkbox__input');
@@ -3147,12 +3362,12 @@
               for (let t = 0; t < i.length; t++) {
                 i[t].checked = !1;
               }
-            if (p.selectModule) {
+            if (m.selectModule) {
               let e = t.querySelectorAll('.select');
               if (e.length)
                 for (let t = 0; t < e.length; t++) {
                   const i = e[t].querySelector('select');
-                  p.selectModule.selectBuild(i);
+                  m.selectModule.selectBuild(i);
                 }
             }
           }, 0);
@@ -3165,119 +3380,9 @@
       class_loaded: '_lazy-loaded',
       use_native: !0,
     });
-    class y {
-      constructor(t) {
-        (this.config = Object.assign({ logging: !0 }, t)),
-          this.observer,
-          !document.documentElement.classList.contains('watcher') &&
-            this.scrollWatcherRun();
-      }
-      scrollWatcherUpdate() {
-        this.scrollWatcherRun();
-      }
-      scrollWatcherRun() {
-        document.documentElement.classList.add('watcher'),
-          this.scrollWatcherConstructor(
-            document.querySelectorAll('[data-watch]')
-          );
-      }
-      scrollWatcherConstructor(t) {
-        if (t.length) {
-          this.scrollWatcherLogging(
-            `Проснулся, слежу за объектами (${t.length})...`
-          ),
-            m(
-              Array.from(t).map(function (t) {
-                return `${
-                  t.dataset.watchRoot ? t.dataset.watchRoot : null
-                }|${t.dataset.watchMargin ? t.dataset.watchMargin : '0px'}|${t.dataset.watchThreshold ? t.dataset.watchThreshold : 0}`;
-              })
-            ).forEach((e) => {
-              let i = e.split('|'),
-                s = { root: i[0], margin: i[1], threshold: i[2] },
-                n = Array.from(t).filter(function (t) {
-                  let e = t.dataset.watchRoot ? t.dataset.watchRoot : null,
-                    i = t.dataset.watchMargin ? t.dataset.watchMargin : '0px',
-                    n = t.dataset.watchThreshold ? t.dataset.watchThreshold : 0;
-                  if (
-                    String(e) === s.root &&
-                    String(i) === s.margin &&
-                    String(n) === s.threshold
-                  )
-                    return t;
-                }),
-                o = this.getScrollWatcherConfig(s);
-              this.scrollWatcherInit(n, o);
-            });
-        } else
-          this.scrollWatcherLogging('Сплю, нет объектов для слежения. ZzzZZzz');
-      }
-      getScrollWatcherConfig(t) {
-        let e = {};
-        if (
-          (document.querySelector(t.root)
-            ? (e.root = document.querySelector(t.root))
-            : 'null' !== t.root &&
-              this.scrollWatcherLogging(
-                `Эмм... родительского объекта ${t.root} нет на странице`
-              ),
-          (e.rootMargin = t.margin),
-          !(t.margin.indexOf('px') < 0 && t.margin.indexOf('%') < 0))
-        ) {
-          if ('prx' === t.threshold) {
-            t.threshold = [];
-            for (let e = 0; e <= 1; e += 0.005) t.threshold.push(e);
-          } else t.threshold = t.threshold.split(',');
-          return (e.threshold = t.threshold), e;
-        }
-        this.scrollWatcherLogging(
-          'Ой ой, настройку data-watch-margin нужно задавать в PX или %'
-        );
-      }
-      scrollWatcherCreate(t) {
-        this.observer = new IntersectionObserver((t, e) => {
-          t.forEach((t) => {
-            this.scrollWatcherCallback(t, e);
-          });
-        }, t);
-      }
-      scrollWatcherInit(t, e) {
-        this.scrollWatcherCreate(e), t.forEach((t) => this.observer.observe(t));
-      }
-      scrollWatcherIntersecting(t, e) {
-        t.isIntersecting
-          ? (!e.classList.contains('_watcher-view') &&
-              e.classList.add('_watcher-view'),
-            this.scrollWatcherLogging(
-              `Я вижу ${e.classList}, добавил класс _watcher-view`
-            ))
-          : (e.classList.contains('_watcher-view') &&
-              e.classList.remove('_watcher-view'),
-            this.scrollWatcherLogging(
-              `Я не вижу ${e.classList}, убрал класс _watcher-view`
-            ));
-      }
-      scrollWatcherOff(t, e) {
-        e.unobserve(t),
-          this.scrollWatcherLogging(`Я перестал следить за ${t.classList}`);
-      }
-      scrollWatcherLogging(t) {
-        this.config.logging && h(`[Наблюдатель]: ${t}`);
-      }
-      scrollWatcherCallback(t, e) {
-        const i = t.target;
-        this.scrollWatcherIntersecting(t, i),
-          i.hasAttribute('data-watch-once') &&
-            t.isIntersecting &&
-            this.scrollWatcherOff(i, e),
-          document.dispatchEvent(
-            new CustomEvent('watcherCallback', { detail: { entry: t } })
-          );
-      }
-    }
-    let v = !1;
+    let f = !1;
     setTimeout(() => {
-      if (v) {
+      if (f) {
         let t = new Event('windowScroll');
         window.addEventListener('scroll', function (e) {
           document.dispatchEvent(t);
@@ -3285,27 +3390,27 @@
       }
     }, 0),
       (window.onload = function () {
-        A.reloadItems(), A.arrange();
+        x.reloadItems(), x.arrange();
       });
-    const _ = document.querySelectorAll('[data-filter]'),
-      S = document.documentElement,
-      b = document.querySelector('.header'),
-      E = document.querySelectorAll('#popup'),
-      I = document.querySelectorAll('.item-prod__sizes-btn'),
-      C = document.querySelector('.price-sort'),
-      L = document.querySelector('#price-sort-id');
-    let w = function () {
+    const g = document.querySelectorAll('[data-filter]'),
+      y = document.documentElement,
+      v = document.querySelector('.header'),
+      _ = document.querySelectorAll('#popup'),
+      b = document.querySelectorAll('.item-prod__sizes-btn'),
+      S = document.querySelector('.price-sort'),
+      E = document.querySelector('#price-sort-id');
+    let I = function () {
       document.documentElement.classList.remove('lock');
     };
-    function x() {
-      E.forEach((t) => {
+    function C() {
+      _.forEach((t) => {
         t.classList.remove('_active');
       });
     }
-    S.addEventListener('click', (t) => {
+    y.addEventListener('click', (t) => {
       let e = t.target;
       if (e.closest('.item-prod__btn')) {
-        x();
+        C();
         let t = e.getAttribute('data-popup');
         document.querySelector(`[data-target="${t}"]`).classList.add('_active'),
           document.documentElement.classList.add('lock');
@@ -3314,41 +3419,41 @@
         (!e.closest('.pop-order__wrapper') ||
           e.closest('.pop-order__content-wrap') ||
           e.closest('.pop-order__content') ||
-          (x(), w()),
-        e.closest('.pop__close') && (x(), w()),
-        e.closest('.icon-menu') && x(),
-        e.closest('.menu__link') && (x(), w()),
+          (C(), I()),
+        e.closest('.pop__close') && (C(), I()),
+        e.closest('.icon-menu') && C(),
+        e.closest('.menu__link') && (C(), I()),
         e.closest('.pop-menu__link') &&
-          (x(), w(), document.documentElement.classList.remove('menu-open')),
+          (C(), I(), document.documentElement.classList.remove('menu-open')),
         e.getAttribute('data-filter'))
       ) {
-        _.forEach((t) => {
+        g.forEach((t) => {
           t.classList.remove('catalogue__btn_active');
         }),
           e.classList.add('catalogue__btn_active');
         let t = e.dataset.filter;
-        A.arrange({ filter: `${t}` }),
-          A.arrange({ sortBy: 'original-order' }),
-          (C.dataset.sort = 'price'),
-          C.classList.remove('catalogue__btn_active'),
-          (L.checked = !1);
+        x.arrange({ filter: `${t}` }),
+          x.arrange({ sortBy: 'original-order' }),
+          (S.dataset.sort = 'price'),
+          S.classList.remove('catalogue__btn_active'),
+          (E.checked = !1);
       }
-      if (L.checked) {
+      if (E.checked) {
         console.log(e);
         let t = e.getAttribute('data-sort');
-        C.classList.add('catalogue__btn_active'),
+        S.classList.add('catalogue__btn_active'),
           console.log(t),
-          A.arrange({ sortBy: `${t}` }),
-          (C.dataset.sort = 'original-order');
+          x.arrange({ sortBy: `${t}` }),
+          (S.dataset.sort = 'original-order');
       }
       if (
-        (L.checked ||
-          (A.arrange({ sortBy: 'original-order' }),
-          (C.dataset.sort = 'price'),
-          C.classList.remove('catalogue__btn_active')),
+        (E.checked ||
+          (x.arrange({ sortBy: 'original-order' }),
+          (S.dataset.sort = 'price'),
+          S.classList.remove('catalogue__btn_active')),
         e.closest('.item-prod__sizes-btn'))
       ) {
-        I.forEach((t) => {
+        b.forEach((t) => {
           t.classList.remove('item-prod__sizes-btn_active');
         }),
           e.classList.add('item-prod__sizes-btn_active');
@@ -3360,15 +3465,15 @@
     }),
       document.addEventListener('keydown', function (t) {
         'Escape' === t.key &&
-          (x(), w(), document.documentElement.classList.remove('menu-open'));
+          (C(), I(), document.documentElement.classList.remove('menu-open'));
       });
     window.addEventListener('scroll', () => {
       (window.pageYOffset || document.documentElement.scrollTop) > 60
-        ? b.classList.add('_active')
-        : b.classList.remove('_active');
+        ? v.classList.add('_active')
+        : v.classList.remove('_active');
     });
-    const z = document.querySelector('.products'),
-      A = new Isotope(z, {
+    const L = document.querySelector('.products'),
+      x = new Isotope(L, {
         itemSelector: '.item-prod',
         layoutMode: 'masonry',
         getSortData: {
@@ -3378,25 +3483,27 @@
           },
         },
       });
-    ymaps.ready(function () {
-      var t = new ymaps.Map(
-          'yamap',
-          { center: [55.761143, 37.578409], zoom: 16 },
-          { searchControlProvider: 'yandex#search' }
-        ),
-        e = new ymaps.Placemark(
-          t.getCenter(),
-          { balloonContent: 'Current address of the company' },
-          {
-            iconLayout: 'default#image',
-            iconImageHref: 'img/iconPizzaSlice.svg',
-            iconImageSize: [40, 63],
-            iconImageOffset: [-20, -40],
-          }
-        );
-      t.geoObjects.add(e), t.behaviors.disable('scrollZoom');
+    imagesLoaded(L).on('progress', function () {
+      x.layout(), x.reloadItems(), x.arrange();
     }),
-      (window.FLS = !0),
+      ymaps.ready(function () {
+        var t = new ymaps.Map(
+            'yamap',
+            { center: [55.761143, 37.578409], zoom: 16 },
+            { searchControlProvider: 'yandex#search' }
+          ),
+          e = new ymaps.Placemark(
+            t.getCenter(),
+            { balloonContent: 'Current address of the company' },
+            {
+              iconLayout: 'default#image',
+              iconImageHref: 'img/iconPizzaSlice.svg',
+              iconImageSize: [40, 63],
+              iconImageOffset: [-20, -40],
+            }
+          );
+        t.geoObjects.add(e), t.behaviors.disable('scrollZoom');
+      }),
       (function (t) {
         let e = new Image();
         (e.onload = e.onerror =
@@ -3426,7 +3533,6 @@
           window.addEventListener('resize', t), t();
         }
       })(),
-      (p.selectModule = new f({})),
-      new y({});
+      (m.selectModule = new h({}));
   })();
 })();
