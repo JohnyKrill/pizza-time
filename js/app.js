@@ -92,13 +92,13 @@
             y = 'applied',
             v = 'error',
             _ = 'native',
-            b = 'data-',
-            S = 'll-status',
+            S = 'data-',
+            b = 'll-status',
             E = function (t, e) {
-              return t.getAttribute(b + e);
+              return t.getAttribute(S + e);
             },
             I = function (t) {
-              return E(t, S);
+              return E(t, b);
             },
             C = function (t, e) {
               return (function (t, e, i) {
@@ -112,10 +112,10 @@
             x = function (t) {
               return null === I(t);
             },
-            w = function (t) {
+            A = function (t) {
               return I(t) === _;
             },
-            A = [f, g, y, v],
+            w = [f, g, y, v],
             z = function (t, e, i, s) {
               t &&
                 (void 0 === s ? (void 0 === i ? t(e) : t(e, i)) : t(e, i, s));
@@ -288,7 +288,7 @@
                   s,
                   function (n) {
                     !(function (t, e, i, s) {
-                      var n = w(e);
+                      var n = A(e);
                       ot(e, i, s),
                         O(e, i.class_loaded),
                         C(e, g),
@@ -299,7 +299,7 @@
                   },
                   function (n) {
                     !(function (t, e, i, s) {
-                      var n = w(e);
+                      var n = A(e);
                       ot(e, i, s),
                         O(e, i.class_error),
                         C(e, v),
@@ -403,7 +403,7 @@
               })(t),
                 (function (t, e) {
                   x(t) ||
-                    w(t) ||
+                    A(t) ||
                     (T(t, e.class_entered),
                     T(t, e.class_exited),
                     T(t, e.class_applied),
@@ -425,7 +425,7 @@
                 })(t)
                   ? (function (t, e, i, s) {
                       var n = (function (t) {
-                        return A.indexOf(I(t)) >= 0;
+                        return w.indexOf(I(t)) >= 0;
                       })(t);
                       C(t, 'entered'),
                         O(t, i.class_entered),
@@ -1020,12 +1020,12 @@
               y = l.marginTop + l.marginBottom,
               v = l.borderLeftWidth + l.borderRightWidth,
               _ = l.borderTopWidth + l.borderBottomWidth,
-              b = c && n,
-              S = t(o.width);
-            !1 !== S && (l.width = S + (b ? 0 : p + v));
+              S = c && n,
+              b = t(o.width);
+            !1 !== b && (l.width = b + (S ? 0 : p + v));
             var E = t(o.height);
             return (
-              !1 !== E && (l.height = E + (b ? 0 : f + _)),
+              !1 !== E && (l.height = E + (S ? 0 : f + _)),
               (l.innerWidth = l.width - (p + v)),
               (l.innerHeight = l.height - (f + _)),
               (l.outerWidth = l.width + g),
@@ -3396,8 +3396,8 @@
       y = document.documentElement,
       v = document.querySelector('.header'),
       _ = document.querySelectorAll('#popup'),
-      b = document.querySelectorAll('.item-prod__sizes-btn'),
-      S = document.querySelector('.price-sort'),
+      S = document.querySelectorAll('.item-prod__sizes-btn'),
+      b = document.querySelector('.price-sort'),
       E = document.querySelector('#price-sort-id');
     let I = function () {
       document.documentElement.classList.remove('lock');
@@ -3410,18 +3410,48 @@
     y.addEventListener('click', (t) => {
       let e = t.target;
       if (e.closest('.item-prod__btn')) {
+        let t = e.closest('.products__item'),
+          i = t.querySelector('.item-prod__img').src,
+          s = t.querySelector('.item-prod__title').textContent,
+          n = t.querySelector('.item-prod__price-value').textContent,
+          o = t.querySelector('.item-prod__sizes-btn_active').textContent;
+        i &&
+          document
+            .querySelector('.pop-order__image-ibg img')
+            .setAttribute('src', i),
+          s &&
+            (document.querySelector('.pop-order__product-name').textContent =
+              s),
+          n &&
+            (document.querySelector('.pop-order__product-price').innerHTML =
+              n + '₽'),
+          o && (document.querySelector('.pop-order__size').textContent = o);
+      }
+      if (e.closest('.item-prod__btn')) {
         C();
         let t = e.getAttribute('data-popup');
         document.querySelector(`[data-target="${t}"]`).classList.add('_active'),
           document.documentElement.classList.add('lock');
       }
       if (
-        (!e.closest('.pop-order__wrapper') ||
-          e.closest('.pop-order__content-wrap') ||
-          e.closest('.pop-order__content') ||
-          (C(), I()),
-        e.closest('.pop__close') && (C(), I()),
-        e.closest('.icon-menu') && C(),
+        e.closest('.pop-order__wrapper') &&
+        !e.closest('.pop-order__content-wrap') &&
+        !e.closest('.pop-order__content')
+      ) {
+        C(), I();
+        document.querySelectorAll('.pop-order__item > input').forEach((t) => {
+          t.value = '';
+        });
+      }
+      if (e.closest('.pop__close')) {
+        document.querySelectorAll('.pop-order__item > input').forEach((t) => {
+          t.value = '';
+        }),
+          C(),
+          I();
+      }
+      if (
+        (e.closest('.icon-menu') && C(),
         e.closest('.menu__link') && (C(), I()),
         e.closest('.pop-menu__link') &&
           (C(), I(), document.documentElement.classList.remove('menu-open')),
@@ -3434,26 +3464,26 @@
         let t = e.dataset.filter;
         x.arrange({ filter: `${t}` }),
           x.arrange({ sortBy: 'original-order' }),
-          (S.dataset.sort = 'price'),
-          S.classList.remove('catalogue__btn_active'),
+          (b.dataset.sort = 'price'),
+          b.classList.remove('catalogue__btn_active'),
           (E.checked = !1);
       }
       if (E.checked) {
         console.log(e);
         let t = e.getAttribute('data-sort');
-        S.classList.add('catalogue__btn_active'),
+        b.classList.add('catalogue__btn_active'),
           console.log(t),
           x.arrange({ sortBy: `${t}` }),
-          (S.dataset.sort = 'original-order');
+          (b.dataset.sort = 'original-order');
       }
       if (
         (E.checked ||
           (x.arrange({ sortBy: 'original-order' }),
-          (S.dataset.sort = 'price'),
-          S.classList.remove('catalogue__btn_active')),
+          (b.dataset.sort = 'price'),
+          b.classList.remove('catalogue__btn_active')),
         e.closest('.item-prod__sizes-btn'))
       ) {
-        b.forEach((t) => {
+        S.forEach((t) => {
           t.classList.remove('item-prod__sizes-btn_active');
         }),
           e.classList.add('item-prod__sizes-btn_active');
@@ -3464,8 +3494,12 @@
       }
     }),
       document.addEventListener('keydown', function (t) {
-        'Escape' === t.key &&
-          (C(), I(), document.documentElement.classList.remove('menu-open'));
+        if ('Escape' === t.key) {
+          C(), I(), document.documentElement.classList.remove('menu-open');
+          document.querySelectorAll('.pop-order__item > input').forEach((t) => {
+            t.value = '';
+          });
+        }
       });
     window.addEventListener('scroll', () => {
       (window.pageYOffset || document.documentElement.scrollTop) > 60
