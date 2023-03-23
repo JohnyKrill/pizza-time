@@ -3413,19 +3413,23 @@
         let t = e.closest('.products__item'),
           i = t.querySelector('.item-prod__img').src,
           s = t.querySelector('.item-prod__title').textContent,
-          n = t.querySelector('.item-prod__price-value').textContent,
-          o = t.querySelector('.item-prod__sizes-btn_active').textContent;
-        i &&
-          document
-            .querySelector('.pop-order__image-ibg img')
-            .setAttribute('src', i),
+          n = t.querySelector('.item-prod__price-value').textContent;
+        t.querySelectorAll('.item-prod__sizes-btn').forEach((t) => {
+          if (t.classList.contains('item-prod__sizes-btn_active')) {
+            let e = t.textContent;
+            document.querySelector('.pop-order__size').textContent = e;
+          }
+        }),
+          i &&
+            document
+              .querySelector('.pop-order__image-ibg img')
+              .setAttribute('src', i),
           s &&
             (document.querySelector('.pop-order__product-name').textContent =
               s),
           n &&
             (document.querySelector('.pop-order__product-price').innerHTML =
-              n + '₽'),
-          o && (document.querySelector('.pop-order__size').textContent = o);
+              n + '₽');
       }
       if (e.closest('.item-prod__btn')) {
         C();
@@ -3453,7 +3457,7 @@
       if (
         (e.closest('.icon-menu') && C(),
         e.closest('.menu__link') && (C(), I()),
-        e.closest('.pop-menu__link') &&
+        e.closest('.pop-menu__content a') &&
           (C(), I(), document.documentElement.classList.remove('menu-open')),
         e.getAttribute('data-filter'))
       ) {
@@ -3469,10 +3473,8 @@
           (E.checked = !1);
       }
       if (E.checked) {
-        console.log(e);
         let t = e.getAttribute('data-sort');
         b.classList.add('catalogue__btn_active'),
-          console.log(t),
           x.arrange({ sortBy: `${t}` }),
           (b.dataset.sort = 'original-order');
       }
