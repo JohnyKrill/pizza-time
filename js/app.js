@@ -3390,19 +3390,18 @@
       }
     }, 0),
       (window.onload = function () {
-        x.reloadItems(), x.arrange();
+        L.reloadItems(), L.arrange();
       });
     const g = document.querySelectorAll('[data-filter]'),
       y = document.documentElement,
       v = document.querySelector('.header'),
       _ = document.querySelectorAll('#popup'),
-      S = document.querySelectorAll('.item-prod__sizes-btn'),
-      b = document.querySelector('.price-sort'),
-      E = document.querySelector('#price-sort-id');
-    let I = function () {
+      S = document.querySelector('.price-sort'),
+      b = document.querySelector('#price-sort-id');
+    let E = function () {
       document.documentElement.classList.remove('lock');
     };
-    function C() {
+    function I() {
       _.forEach((t) => {
         t.classList.remove('_active');
       });
@@ -3432,7 +3431,7 @@
               n + '₽');
       }
       if (e.closest('.item-prod__btn')) {
-        C();
+        I();
         let t = e.getAttribute('data-popup');
         document.querySelector(`[data-target="${t}"]`).classList.add('_active'),
           document.documentElement.classList.add('lock');
@@ -3442,7 +3441,7 @@
         !e.closest('.pop-order__content-wrap') &&
         !e.closest('.pop-order__content')
       ) {
-        C(), I();
+        I(), E();
         document.querySelectorAll('.pop-order__item > input').forEach((t) => {
           t.value = '';
         });
@@ -3451,14 +3450,14 @@
         document.querySelectorAll('.pop-order__item > input').forEach((t) => {
           t.value = '';
         }),
-          C(),
-          I();
+          I(),
+          E();
       }
       if (
-        (e.closest('.icon-menu') && C(),
-        e.closest('.menu__link') && (C(), I()),
+        (e.closest('.icon-menu') && I(),
+        e.closest('.menu__link') && (I(), E()),
         e.closest('.pop-menu__content a') &&
-          (C(), I(), document.documentElement.classList.remove('menu-open')),
+          (I(), E(), document.documentElement.classList.remove('menu-open')),
         e.getAttribute('data-filter'))
       ) {
         g.forEach((t) => {
@@ -3466,29 +3465,31 @@
         }),
           e.classList.add('catalogue__btn_active');
         let t = e.dataset.filter;
-        x.arrange({ filter: `${t}` }),
-          x.arrange({ sortBy: 'original-order' }),
-          (b.dataset.sort = 'price'),
-          b.classList.remove('catalogue__btn_active'),
-          (E.checked = !1);
+        L.arrange({ filter: `${t}` }),
+          L.arrange({ sortBy: 'original-order' }),
+          (S.dataset.sort = 'price'),
+          S.classList.remove('catalogue__btn_active'),
+          (b.checked = !1);
       }
-      if (E.checked) {
+      if (b.checked) {
         let t = e.getAttribute('data-sort');
-        b.classList.add('catalogue__btn_active'),
-          x.arrange({ sortBy: `${t}` }),
-          (b.dataset.sort = 'original-order');
+        S.classList.add('catalogue__btn_active'),
+          L.arrange({ sortBy: `${t}` }),
+          (S.dataset.sort = 'original-order');
       }
       if (
-        (E.checked ||
-          (x.arrange({ sortBy: 'original-order' }),
-          (b.dataset.sort = 'price'),
-          b.classList.remove('catalogue__btn_active')),
-        e.closest('.item-prod__sizes-btn'))
+        (b.checked ||
+          (L.arrange({ sortBy: 'original-order' }),
+          (S.dataset.sort = 'price'),
+          S.classList.remove('catalogue__btn_active')),
+        e.closest('.item-prod__sizes'))
       ) {
-        S.forEach((t) => {
-          t.classList.remove('item-prod__sizes-btn_active');
-        }),
-          e.classList.add('item-prod__sizes-btn_active');
+        e.closest('.item-prod__sizes')
+          .querySelectorAll('.item-prod__sizes-btn')
+          .forEach((t) => {
+            t.classList.remove('item-prod__sizes-btn_active'),
+              e.classList.add('item-prod__sizes-btn_active');
+          });
         let t = e.getAttribute('data-item-size-price');
         e
           .closest('article')
@@ -3497,7 +3498,7 @@
     }),
       document.addEventListener('keydown', function (t) {
         if ('Escape' === t.key) {
-          C(), I(), document.documentElement.classList.remove('menu-open');
+          I(), E(), document.documentElement.classList.remove('menu-open');
           document.querySelectorAll('.pop-order__item > input').forEach((t) => {
             t.value = '';
           });
@@ -3508,8 +3509,8 @@
         ? v.classList.add('_active')
         : v.classList.remove('_active');
     });
-    const L = document.querySelector('.products'),
-      x = new Isotope(L, {
+    const C = document.querySelector('.products'),
+      L = new Isotope(C, {
         itemSelector: '.item-prod',
         layoutMode: 'masonry',
         getSortData: {
@@ -3519,8 +3520,8 @@
           },
         },
       });
-    imagesLoaded(L).on('progress', function () {
-      x.layout(), x.reloadItems(), x.arrange();
+    imagesLoaded(C).on('progress', function () {
+      L.layout(), L.reloadItems(), L.arrange();
     }),
       ymaps.ready(function () {
         var t = new ymaps.Map(

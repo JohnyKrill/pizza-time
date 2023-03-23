@@ -827,12 +827,15 @@ body.popup-show::after {
   background-color: transparent;
   transition: color 0.3s ease 0s, background 0.3s ease 0s;
   padding-block: 13px;
-  padding-inline: 25px;
+  padding-inline: 20px;
+  flex-grow: 1;
+  transition: flex-grow 0.3s ease 0s;
 }
 .item-prod__sizes-btn_active {
   border-radius: 21px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
   color: #a2a2a2;
+  flex-grow: 2;
 }
 @media (any-hover: hover) {
   .item-prod__sizes-btn:hover {
